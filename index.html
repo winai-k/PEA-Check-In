@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Sweetalert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.6/dist/sweetalert2.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Check-In Check-Out Online</title>
+    <title>PEA Support</title>
   </head>
   <body>
     <center>
@@ -41,24 +43,6 @@ window.onload = function() {
 
 const xurl = "https://script.google.com/macros/s/AKfycbyofqijjBPi_TbHhHPqCuU0wC0oQOyHdLcmzfNBoELR_aubURGqaCsBR0K9Yb9NXzlJ/exec";
 
-function checks(){
-
-var today = new Date();
-today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
-var hh = today.getHours();
-var mm = today.getMinutes(); 
-
-        if(hh >= 6){
-          document.getElementById("cin").classList.remove('invisible');
-        //}else if(hh >= 13){
-          document.getElementById("cout").classList.remove('invisible');
-            }else{
-alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 0.00-6.00 "+hh+":"+mm);
-liff.closeWindow();  
-            }
-}
-
-
 function initializeLiff(myLiffId) {
     liff
         .init({
@@ -69,6 +53,23 @@ function initializeLiff(myLiffId) {
         })
         .catch((err) => {
         });
+}
+
+function checks(){
+    var today = new Date();
+    today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
+
+    var hh = today.getHours();
+    var mm = today.getMinutes(); 
+
+    if(hh >= 6){
+        document.getElementById("cin").classList.remove('invisible');
+    //}else if(hh >= 13){
+        document.getElementById("cout").classList.remove('invisible');
+    }else{
+        alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 0.00-6.00 "+hh+":"+mm);
+        liff.closeWindow();  
+    }
 }
 
 var x = document.getElementById("demo");
@@ -82,35 +83,37 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  liff.getProfile().then(function(profile) {
+  
+    var uid = profile.userId;
+    var uname = profile.displayName;
+    var tlat = ""+position.coords.latitude;
+    var tlong = ""+position.coords.longitude;
+    var xos = liff.getOS();
 
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-           var tlat = ""+position.coords.latitude;
-           var tlong = ""+position.coords.longitude;
-        var xos = liff.getOS();
+    const checked = [...document.getElementsByName("select_shift")].find(e => e.checked);
+    var shift = checked.value;
+
   x.innerHTML = "Lat: " + tlat + 
   "<br>Long: " + tlong+ 
   "<br>userId: " + uid+ 
   "<br>displayName: " + uname+
   "<br>your OS: " + xos;
-var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+tlat+"&long="+tlong;
-        xmlhttp.open('GET', theUrl);
-        xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
-        }
-        alert(jsonResponse.desc);
-        liff.closeWindow();
-      }});  
+
+    var xmlhttp = new XMLHttpRequest();
+    var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+tlat+"&long="+tlong+"&shift="+shift;
+    xmlhttp.open('GET', theUrl);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var jsonResponse = JSON.parse(this.responseText);
+      }
+      alert(jsonResponse.desc);
+      liff.closeWindow();
+    }});  
 }
 
-
-
 ///////////////////////////////
-
 
 function getLocationOut() {
   if (navigator.geolocation) {
@@ -121,38 +124,39 @@ function getLocationOut() {
 }
 
 function showPositionOut(position) {
+  liff.getProfile().then(function(profile) {
 
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-        var xos = liff.getOS();
+    var uid = profile.userId;
+    var uname = profile.displayName;
+    var xos = liff.getOS();
+
+    const checked = [...document.getElementsByName("select_shift")].find(e => e.checked);
+    var shift = checked.value;
+
   x.innerHTML = "Lat: " + position.coords.latitude + 
   "<br>Long: " + position.coords.longitude+ 
   "<br>userId: " + uid+ 
   "<br>displayName: " + uname+
   "<br>your OS: " + xos;
-var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-        xmlhttp.open('GET', theUrl);
-        xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
-        }
-        alert(jsonResponse.desc);
-        liff.closeWindow();
-      }});  
+
+    var xmlhttp = new XMLHttpRequest();
+    var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude+"&shift="+shift;
+    xmlhttp.open('GET', theUrl);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var jsonResponse = JSON.parse(this.responseText);
+      }
+      alert(jsonResponse.desc);
+      liff.closeWindow();
+    }});  
 }
 
-
-
 </script>
-
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.6/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
