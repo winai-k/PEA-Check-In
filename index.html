@@ -18,18 +18,36 @@
       <h2 >Check-In | Check-Out</h2>
   
       <p>Choose your work shift.</p>
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-4" style="background-color:yellow;">
+                  <input type="radio" id="dayshift" name="select_shift" value="DAYSHIFT" Align=right/>
+              </div>
+              <div class="col-xs-5" style="background-color:pink;" Align=left>
+                  <label for="dayshift">DAY SHIFT</label><br />
+              </div>
+          </div>
 
-      <input type="radio" id="dayshift" name="select_shift" value="DAYSHIFT" />
-      <label for="dayshift">DAY SHIFT</label><br />
+          <div class="row">
+              <div class="col-xs-4" style="background-color:yellow;">
+                  <input type="radio" id="businessday" name="select_shift" value="BUSINESSDAY"/>
+              </div>
+              <div class="col-xs-5" style="background-color:pink;" Align=left>
+                  <label for="businessday">BUSINESS DAY</label><br />
+              </div>
+          </div>
 
-      <input type="radio" id="businessday" name="select_shift" value="BUSINESSDAY"/>
-      <label for="businessday">BUSINESS DAY</label><br />
-
-      <input type="radio" id="nightshift" name="select_shift" value="NIGHTSHIFT"/>
-      <label for="nightshift">NIGHT SHIFT</label><br /><br />
+          <div class="row">
+            <div class="col-xs-4" style="background-color:yellow;">
+                <input type="radio" id="nightshift" name="select_shift" value="NIGHTSHIFT"/>
+            </div>
+            <div class="col-xs-5" style="background-color:pink;" Align=left> 
+                <label for="nightshift">NIGHT SHIFT</label><br /><br />
+            </div>
+          </div>
 
       <p>Click the button to check-in or check-out with your coordinates.</p>
-
+      </div>
       <div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
       <div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
 
