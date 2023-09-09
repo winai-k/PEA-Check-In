@@ -8,17 +8,31 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>ITDEV.win</title>
+    <title>Check-In Check-Out Online</title>
   </head>
   <body>
     <center>
-    <h1>Check-In/Out Log</h1>
-<p>Click the button to check-in or check-out with your coordinates.</p>
-<div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
-<div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
+      <h1 >Online</h1>
+      <h2 >Check-In | Check-Out</h2>
+  
+      <p>Choose your work shift.</p>
 
-<p id="demo"></p>
-</center>
+      <input type="radio" id="dayshift" name="select_shift" value="DAYSHIFT" />
+      <label for="dayshift">DAY SHIFT</label><br />
+
+      <input type="radio" id="businessday" name="select_shift" value="BUSINESSDAY"/>
+      <label for="businessday">BUSINESS DAY</label><br />
+
+      <input type="radio" id="nightshift" name="select_shift" value="NIGHTSHIFT"/>
+      <label for="nightshift">NIGHT SHIFT</label><br /><br />
+
+      <p>Click the button to check-in or check-out with your coordinates.</p>
+
+      <div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
+      <div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
+
+      <p id="demo"></p>
+    </center>
 
 <script>
 window.onload = function() {
