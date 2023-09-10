@@ -27,7 +27,7 @@
           <option class="rblue" value="businessday" Align="center">BUSINESS DAY</option>
           <option class="mblue" value="nightshift" Align="center">NIGHT SHIFT</option>
         </select>
-
+        <br><br>
         <div>
           <button id="cin" type="button" class="invisible btn btn-success button-w" onclick="getLocation()">Check-In</button>
           <button id="cout" type="button" class="invisible btn btn-danger button-w" onclick="getLocationOut()">Check-Out</button>
@@ -92,13 +92,13 @@ function showPosition(position) {
     var xos = liff.getOS();
     var shift = document.getElementById("shiftSelect").value;
 
-  x.innerHTML = "Lat: " + tlat + ", Long: " + tlong + 
+  x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
   "<br>displayName: " + uname + ", your OS: " + xos +
   "<br>shift: " + shift;
 
     var xmlhttp = new XMLHttpRequest();
-    var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+tlat+"&long="+tlong+"&shift="+shift;
+    var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&lat="+tlat+"&long="+tlong+"&ctype=IN&shift="+shift;
     xmlhttp.open('GET', theUrl);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
@@ -130,13 +130,13 @@ function showPositionOut(position) {
     var xos = liff.getOS();
     var shift = document.getElementById("shiftSelect").value;
 
-  x.innerHTML = "Lat: " + tlat + ", Long: " + tlong + 
+  x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
   "<br>displayName: " + uname + ", your OS: " + xos +
   "<br>shift: " + shift;
 
     var xmlhttp = new XMLHttpRequest();
-    var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+tlat+"&long="+tlong+"&shift="+shift;
+    var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&lat="+tlat+"&long="+tlong+"&ctype=OUT&shift="+shift;
     xmlhttp.open('GET', theUrl);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
