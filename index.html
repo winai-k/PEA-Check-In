@@ -17,8 +17,8 @@
   <body>
     <center>
       <section class="box-Indigo">
-        <h1 class="jumbotron text-center">Online</h1>
-        <h2 class="jumbotron text-center">Check-In | Check-Out</h2>
+        <h1>Online</h1>
+        <h2>Check-In | Check-Out</h2>
       </section>
       <section class="box-Thistle">
         <select name="shift" id="shiftSelect" onfocus="this.size=4;" onblur="this.size=1;" onchange="this.size=4; this.blur()">
@@ -90,15 +90,12 @@ function showPosition(position) {
     var tlat = ""+position.coords.latitude;
     var tlong = ""+position.coords.longitude;
     var xos = liff.getOS();
+    var shift = document.getElementById("shiftSelect").value;
 
-    const checked = [...document.getElementsByName("select_shift")].find(e => e.checked);
-    var shift = checked.value;
-
-  x.innerHTML = "Lat: " + tlat + 
-  "<br>Long: " + tlong+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname+
-  "<br>your OS: " + xos;
+  x.innerHTML = "Lat: " + tlat + ", Long: " + tlong + 
+  "<br>userId: " + uid + 
+  "<br>displayName: " + uname + ", your OS: " + xos +
+  "<br>shift: " + shift;
 
     var xmlhttp = new XMLHttpRequest();
     var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+tlat+"&long="+tlong+"&shift="+shift;
@@ -128,19 +125,18 @@ function showPositionOut(position) {
 
     var uid = profile.userId;
     var uname = profile.displayName;
+    var tlat = ""+position.coords.latitude;
+    var tlong = ""+position.coords.longitude;
     var xos = liff.getOS();
+    var shift = document.getElementById("shiftSelect").value;
 
-    const checked = [...document.getElementsByName("select_shift")].find(e => e.checked);
-    var shift = checked.value;
-
-  x.innerHTML = "Lat: " + position.coords.latitude + 
-  "<br>Long: " + position.coords.longitude+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname+
-  "<br>your OS: " + xos;
+  x.innerHTML = "Lat: " + tlat + ", Long: " + tlong + 
+  "<br>userId: " + uid + 
+  "<br>displayName: " + uname + ", your OS: " + xos +
+  "<br>shift: " + shift;
 
     var xmlhttp = new XMLHttpRequest();
-    var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude+"&shift="+shift;
+    var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+tlat+"&long="+tlong+"&shift="+shift;
     xmlhttp.open('GET', theUrl);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
