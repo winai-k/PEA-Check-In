@@ -5,52 +5,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="styles.css">
     <!-- Sweetalert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.6/dist/sweetalert2.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>PEA Support</title>
+    <title>AIT-PEA Support</title>
   </head>
   <body>
     <center>
-      <h1 >Online</h1>
-      <h2 >Check-In | Check-Out</h2>
-  
-      <p>Choose your work shift.</p>
-      <div class="container">
-          <div class="row">
-              <div class="col-xs-4" style="background-color:yellow;">
-                  <input type="radio" id="dayshift" name="select_shift" value="DAYSHIFT" Align=right/>
-              </div>
-              <div class="col-xs-5" style="background-color:pink;" Align=left>
-                  <label for="dayshift">DAY SHIFT</label><br />
-              </div>
-          </div>
+      <section class="box-Indigo">
+        <h1 class="jumbotron text-center">Online</h1>
+        <h2 class="jumbotron text-center">Check-In | Check-Out</h2>
+      </section>
+      <section class="box-Thistle">
+        <select name="shift" id="shiftSelect" onfocus="this.size=4;" onblur="this.size=1;" onchange="this.size=4; this.blur()">
+          <option class="silver" value="">--Choose your work shift--</option>
+          <option class="aqua" value="dayshift" Align="center">DAY SHIFT</option>
+          <option class="rblue" value="businessday" Align="center">BUSINESS DAY</option>
+          <option class="mblue" value="nightshift" Align="center">NIGHT SHIFT</option>
+        </select>
 
-          <div class="row">
-              <div class="col-xs-4" style="background-color:yellow;">
-                  <input type="radio" id="businessday" name="select_shift" value="BUSINESSDAY"/>
-              </div>
-              <div class="col-xs-5" style="background-color:pink;" Align=left>
-                  <label for="businessday">BUSINESS DAY</label><br />
-              </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-4" style="background-color:yellow;">
-                <input type="radio" id="nightshift" name="select_shift" value="NIGHTSHIFT"/>
-            </div>
-            <div class="col-xs-5" style="background-color:pink;" Align=left> 
-                <label for="nightshift">NIGHT SHIFT</label><br /><br />
-            </div>
-          </div>
-
-      <p>Click the button to check-in or check-out with your coordinates.</p>
-      </div>
-      <div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
-      <div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
-
+        <div>
+          <button id="cin" type="button" class="invisible btn btn-success button-w" onclick="getLocation()">Check-In</button>
+          <button id="cout" type="button" class="invisible btn btn-danger button-w" onclick="getLocationOut()">Check-Out</button>
+        </div>
+      </section>
       <p id="demo"></p>
     </center>
 
