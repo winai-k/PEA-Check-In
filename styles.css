@@ -37,3 +37,8 @@ option.mblue:hover {
 }
 
 .button-w {width: 120px;}
+
+label {
+  width:40px;
+  display: inline-block;
+}
