@@ -2,6 +2,8 @@ h1,h2 {
   font-family: Lato;
 }
 
+.button-w {width: 120px;}
+
 .box-Indigo { 
   background-image: linear-gradient(to bottom ,#181818 ,Indigo); 
   color: white;
@@ -12,7 +14,7 @@ h1,h2 {
 .box-Thistle { 
   background-image: linear-gradient(to bottom ,Indigo,Gold);
   color: black;
-  border-radius: 5px;
+  border-radius: 0px;
   padding: 40px;
 }
 
@@ -36,11 +38,13 @@ option.mblue:hover {
   color: white;
 }
 
-.button-w {width: 120px;}
-
 label {
   text-align: left;
   width:50px;
   display: inline-block;
   color: white;
+}
+
+label.free {
+  width:25px;
 }
