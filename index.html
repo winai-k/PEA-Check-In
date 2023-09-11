@@ -102,10 +102,12 @@ function showPosition(position) {
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
 
+  /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
   "<br>displayName: " + uname + ", your OS: " + xos +
   "<br>shift: " + shift;
+  */
 
     var xmlhttp = new XMLHttpRequest();
     var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&sloc="+sloc+"&lat="+tlat+"&long="+tlong+"&ctype=IN&shift="+shift;
@@ -142,10 +144,12 @@ function showPositionOut(position) {
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
 
+  /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
   "<br>displayName: " + uname + ", your OS: " + xos +
   "<br>shift: " + shift;
+  */
 
     var xmlhttp = new XMLHttpRequest();
     var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&sloc="+sloc+"&lat="+tlat+"&long="+tlong+"&ctype=OUT&shift="+shift;
