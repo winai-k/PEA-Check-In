@@ -39,6 +39,8 @@ option.mblue:hover {
 .button-w {width: 120px;}
 
 label {
-  width:40px;
+  text-align: left;
+  width:60px;
   display: inline-block;
+  color: white;
 }
