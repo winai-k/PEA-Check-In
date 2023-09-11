@@ -28,6 +28,13 @@
           <option class="mblue" value="night" Align="center">NIGHT SHIFT</option>
         </select>
         <br><br>
+          <input class="form-check-input" type="radio" id="locDC" name="select_loc" value="DC" checked>
+          <label class="form-check-label" for="locDC">DC</label>
+          <input class="form-check-input" type="radio" id="locDR" name="select_loc" value="DR" >
+          <label class="form-check-label" for="locDR">DR</label>
+          <input class="form-check-input" type="radio" id="locWFH" name="select_loc" value="WFH">
+          <label class="form-check-label" for="locWFH">WFH</label>
+        <br><br>
         <div>
           <button id="cin" type="button" class="invisible btn btn-success button-w" onclick="getLocation()">Check-In</button>
           <button id="cout" type="button" class="invisible btn btn-danger button-w" onclick="getLocationOut()">Check-Out</button>
@@ -91,6 +98,8 @@ function showPosition(position) {
     var tlong = ""+position.coords.longitude;
     var xos = liff.getOS();
     var shift = document.getElementById("shiftSelect").value;
+    const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
+    var sloc = checked.value;
 
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
@@ -98,7 +107,7 @@ function showPosition(position) {
   "<br>shift: " + shift;
 
     var xmlhttp = new XMLHttpRequest();
-    var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&lat="+tlat+"&long="+tlong+"&ctype=IN&shift="+shift;
+    var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&sloc="+sloc+"&lat="+tlat+"&long="+tlong+"&ctype=IN&shift="+shift;
     xmlhttp.open('GET', theUrl);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
@@ -129,6 +138,8 @@ function showPositionOut(position) {
     var tlong = ""+position.coords.longitude;
     var xos = liff.getOS();
     var shift = document.getElementById("shiftSelect").value;
+    const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
+    var sloc = checked.value;
 
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
@@ -136,7 +147,7 @@ function showPositionOut(position) {
   "<br>shift: " + shift;
 
     var xmlhttp = new XMLHttpRequest();
-    var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&lat="+tlat+"&long="+tlong+"&ctype=OUT&shift="+shift;
+    var theUrl = xurl+"?user="+uid+"&name="+uname+"&xos="+xos+"&sloc="+sloc+"&lat="+tlat+"&long="+tlong+"&ctype=OUT&shift="+shift;
     xmlhttp.open('GET', theUrl);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
