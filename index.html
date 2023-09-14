@@ -103,7 +103,6 @@ function showPosition(position) {
     var shift = document.getElementById("shiftSelect").value;
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
-    var desch = "";
 
   /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
@@ -120,11 +119,10 @@ function showPosition(position) {
       if (this.readyState == 4 && this.status == 200) {
           var jsonResponse = JSON.parse(this.responseText);
       }
-      desch = jsonResponse.desc;
       //alert(jsonResponse.desc);
+      Swal.fire('Good job!', jsonResponse.desc, 'success').then(() => { liff.closeWindow(); });
     }
-    Swal.fire('Good job!', desch, 'success').then(() => { liff.closeWindow(); });
-    
+     
   });  
 }
 
