@@ -82,6 +82,8 @@ function checks(){
 
 var x = document.getElementById("demo");
 
+//-Location-In-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -117,12 +119,13 @@ function showPosition(position) {
       if (this.readyState == 4 && this.status == 200) {
           var jsonResponse = JSON.parse(this.responseText);
       }
-      alert(jsonResponse.desc);
+      //alert(jsonResponse.desc);
+      Swal.fire('Successful!', jsonResponse.desc, 'success')
       liff.closeWindow();
     }});  
 }
 
-///////////////////////////////
+//-Location-Out-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getLocationOut() {
   if (navigator.geolocation) {
@@ -159,7 +162,8 @@ function showPositionOut(position) {
       if (this.readyState == 4 && this.status == 200) {
           var jsonResponse = JSON.parse(this.responseText);
       }
-      alert(jsonResponse.desc);
+      //alert(jsonResponse.desc);
+      Swal.fire('Successful!', jsonResponse.desc, 'success')
       liff.closeWindow();
     }});  
 }
