@@ -120,7 +120,7 @@ function showPosition(position) {
           var jsonResponse = JSON.parse(this.responseText);
       }
       //alert(jsonResponse.desc);
-      Swal.fire('Good job!', jsonResponse.desc, 'success').then(() => { liff.closeWindow(); });
+      Swal.fire(jsonResponse.header, jsonResponse.desc, jsonResponse.alert).then(() => { liff.closeWindow(); });
     }
      
   });  
@@ -164,7 +164,7 @@ function showPositionOut(position) {
           var jsonResponse = JSON.parse(this.responseText);
       }
       //alert(jsonResponse.desc);
-      Swal.fire('Good job!', jsonResponse.desc, 'success').then(() => { liff.closeWindow(); });
+      Swal.fire(jsonResponse.header, jsonResponse.desc, jsonResponse.alert).then(() => { liff.closeWindow(); });
     }});  
 }
 
