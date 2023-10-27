@@ -69,7 +69,18 @@ function checks(){
 
     var hh = today.getHours();
     var mm = today.getMinutes(); 
+    var shift = document.getElementById("shiftSelect").value;
 
+    if(shift == ""){
+      document.getElementById("cin").classList.add('invisible');
+      document.getElementById("cout").classList.add('invisible');
+    }else{
+      document.getElementById("cin").classList.remove('invisible');
+      document.getElementById("cout").classList.remove('invisible');
+    }
+
+
+  
     if(hh >= 0){
         document.getElementById("cin").classList.remove('invisible');
     //}else if(hh >= 13){
