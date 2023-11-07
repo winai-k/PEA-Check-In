@@ -116,6 +116,8 @@ function showPosition(position) {
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
 
+    document.getElementById("cin").attributes.add('disabled');
+
   /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
@@ -160,6 +162,8 @@ function showPositionOut(position) {
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
 
+    document.getElementById("cout").attributes.add('disabled');
+    
   /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
