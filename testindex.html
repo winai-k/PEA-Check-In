@@ -21,9 +21,9 @@
         <h2>Check-In | Check-Out</h2>
       </section>
       <section class="box-Thistle">
-        <select name="shift" id="shiftSelect" onfocus="this.size=4;" onblur="this.size=1;" onchange="this.size=4; this.blur()">
+        <select name="shift" id="shiftSelect" onfocus="this.size=4;" onblur="this.size=1;" onchange="this.size=4; this.blur();checkselect()">
           <option class="silver" value="">--Choose your work shift--</option>
-          <option class="aqua" value="day" Align="center">DAY SHIFT</option>
+          <option class="aqua" value="day" Align="center" >DAY SHIFT</option>
           <option class="rblue" value="business" Align="center">BUSINESS DAY</option>
           <option class="mblue" value="night" Align="center">NIGHT SHIFT</option>
         </select>
@@ -69,17 +69,17 @@ function checks(){
 
     var hh = today.getHours();
     var mm = today.getMinutes(); 
-    var shift = document.getElementById("shiftSelect").value;
+    //var shift = document.getElementById("shiftSelect").value;
 
-    if(shift == ""){
-      document.getElementById("cin").classList.add('invisible');
-      document.getElementById("cout").classList.add('invisible');
-      alert("add class");
-    }else{
-      document.getElementById("cin").classList.add('invisible');
-      document.getElementById("cout").classList.add('invisible');
-      alert("remove class");
-    }
+    //if(shift == ""){
+    //  document.getElementById("cin").classList.add('invisible');
+    //  document.getElementById("cout").classList.add('invisible');
+    //  alert("add class");
+    //}else{
+    //  document.getElementById("cin").classList.add('invisible');
+    //  document.getElementById("cout").classList.add('invisible');
+    //  alert("remove class");
+    //}
 
 
   
@@ -91,6 +91,22 @@ function checks(){
     //    alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 0.00-6.00 "+hh+":"+mm);
     //    liff.closeWindow();  
     //}
+}
+
+function checkselect(){
+
+    var shift = document.getElementById("shiftSelect").value;
+
+    if(shift == ""){
+      document.getElementById("cin").classList.add('invisible');
+      document.getElementById("cout").classList.add('invisible');
+      alert("add class");
+    }else{
+      document.getElementById("cin").classList.remove('invisible');
+      document.getElementById("cout").classList.remove('invisible');
+      alert("remove class");
+    }
+
 }
 
 var x = document.getElementById("demo");
