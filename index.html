@@ -37,8 +37,8 @@
           <label class="form-check-label" for="locWFH">WFH</label>
         <br><br>
         <div>
-          <button id="cin" type="button" class="invisible btn btn-success button-w" onclick="getLocation()">Check-In</button>
-          <button id="cout" type="button" class="invisible btn btn-danger button-w" onclick="getLocationOut()">Check-Out</button>
+          <button id="cin" type="button" class="invisible btn btn-success button-w" onclick="checkclick(); getLocation()">Check-In</button>
+          <button id="cout" type="button" class="invisible btn btn-danger button-w" onclick="checkclick(); getLocationOut()">Check-Out</button>
         </div>
       </section>
       <p id="demo"></p>
@@ -78,6 +78,11 @@ function checks(){
         alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 0.00-6.00 "+hh+":"+mm);
         liff.closeWindow();  
     }
+}
+
+function checkclick() {
+  document.getElementById("cin").classList.add('invisible');
+  document.getElementById("cout").classList.add('invisible');
 }
 
 function checkselect() {
@@ -132,7 +137,6 @@ function showPosition(position) {
           var jsonResponse = JSON.parse(this.responseText);
       }
       //alert(jsonResponse.desc);
-      document.getElementById("cin").classList.add('invisible');
       Swal.fire(jsonResponse.header, jsonResponse.desc, jsonResponse.alert).then(() => { liff.closeWindow(); });
     }
      
@@ -177,7 +181,6 @@ function showPositionOut(position) {
           var jsonResponse = JSON.parse(this.responseText);
       }
       //alert(jsonResponse.desc);
-      document.getElementById("cout").classList.add('invisible');
       Swal.fire(jsonResponse.header, jsonResponse.desc, jsonResponse.alert).then(() => { liff.closeWindow(); });
     }});  
 }
