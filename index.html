@@ -116,8 +116,6 @@ function showPosition(position) {
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
 
-    //document.getElementById("cin").attributes.add('disabled');
-
   /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
   "<br>userId: " + uid + 
@@ -134,6 +132,7 @@ function showPosition(position) {
           var jsonResponse = JSON.parse(this.responseText);
       }
       //alert(jsonResponse.desc);
+      document.getElementById("cin").classList.add('invisible');
       Swal.fire(jsonResponse.header, jsonResponse.desc, jsonResponse.alert).then(() => { liff.closeWindow(); });
     }
      
@@ -161,8 +160,6 @@ function showPositionOut(position) {
     var shift = document.getElementById("shiftSelect").value;
     const checked = [...document.getElementsByName("select_loc")].find(e => e.checked);
     var sloc = checked.value;
-
-    //document.getElementById("cout").attributes.add('disabled');
     
   /*
   x.innerHTML = "<br>Lat: " + tlat + ", Long: " + tlong + 
@@ -180,6 +177,7 @@ function showPositionOut(position) {
           var jsonResponse = JSON.parse(this.responseText);
       }
       //alert(jsonResponse.desc);
+      document.getElementById("cout").classList.add('invisible');
       Swal.fire(jsonResponse.header, jsonResponse.desc, jsonResponse.alert).then(() => { liff.closeWindow(); });
     }});  
 }
